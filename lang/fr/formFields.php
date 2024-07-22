@@ -11,4 +11,5 @@ return [
     'address' => ucfirst('addresse'),
     'postal_code' => ucfirst('code postal'),
     'sold' => ucfirst('vendu'),
+    'option name' => 'Nom de l\'option',
 ];

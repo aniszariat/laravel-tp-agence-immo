@@ -11,7 +11,7 @@
             <p class="card-text">{{ $property->description }}</p>
 
             <a href="{{ route('admin.property.edit', ['property' => $property->id]) }}" class="btn btn-primary">modifier</a>
-            <a href="{{ route('admin.property.edit', ['property' => $property->id]) }}" class="btn btn-primary">retour</a>
+            <a href="{{ route('admin.property.index') }}" class="btn btn-primary">retour</a>
         </div>
     </div>
 @endsection

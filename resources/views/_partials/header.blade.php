@@ -1,3 +1,7 @@
+@php
+    $url = Request()->route()->getName();
+@endphp
+
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">Navbar</a>
@@ -8,15 +12,19 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{{ route('admin.property.index') }}">Home</a>
+                    <a @class(['nav-link', 'active' => strpos($url, 'property')]) aria-current="page"
+                        href="{{ route('admin.property.index') }}">{{ __('navbar.properties') }}</a>
                 </li>
-                {{-- <li class="nav-item">
-                    <a class="nav-link" href="#">Link</a>
-                </li> --}}
+
+                <li class="nav-item">
+                    <a @class(['nav-link', 'active' => strpos($url, 'option')]) aria-current="page"
+                        href="{{ route('admin.option.index') }}">{{ __('navbar.options') }}</a>
+                </li>
+
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        Lang
+                        {{ __('navbar.language') }}
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="{{ route('translate', 'en') }}">En</a></li>
