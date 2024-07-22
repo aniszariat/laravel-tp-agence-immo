@@ -22,17 +22,22 @@ class PropertyFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => ['required', 'min:8'],
+            'title' => ['required', 'min:4'],
             'description' => ['required', 'min:20'],
-            'surafce' => ['required', 'intger', 'min:10',],
-            'rooms' => ['required', 'intger', 'min:1',],
-            'bedrooms' => ['required', 'intger', 'min:0',],
-            'floor' => ['required', 'intger', 'min:0',],
-            'price' => ['required', 'intger', 'min:0',],
-            'city' => ['required', 'min:8',],
+            'surface' => ['required', 'integer', 'min:10',],
+            'rooms' => ['required', 'integer', 'min:1',],
+            'bedrooms' => ['required', 'integer', 'min:0',],
+            'floor' => ['required', 'integer', 'min:0',],
+            'price' => ['required', 'integer', 'min:0',],
+            'city' => ['required', 'min:4',],
             'address' => ['required', 'min:8',],
-            'postal_code' => ['required', 'min:8',],
-            'sold' => ['required', 'bool',],
+            'postal_code' => ['required', 'min:4',],
+            'sold' => ['required', 'boolean',],
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        return $this->merge(['sold' => ($this->input('sold')) ?  $this->input('sold') : false]);
     }
 }

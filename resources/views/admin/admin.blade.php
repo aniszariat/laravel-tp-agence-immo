@@ -18,6 +18,10 @@
     @endphp --}}
     @include('_partials.header')
     <div class="container fluid mt-5">
+        @if (session('status'))
+            @include('shared.alert', ['alert' => session('status')])
+        @endif
+
         @yield('content')
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"

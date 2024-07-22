@@ -24,7 +24,7 @@ class PropertyController extends Controller
     public function create()
     {
         $property = new Property();
-        return view('admin.properties.create', compact('property'));
+        return view('admin.properties.form', compact('property'));
     }
 
     /**
@@ -34,7 +34,8 @@ class PropertyController extends Controller
     {
         $property = new Property;
         $property = Property::create($request->validated());
-        return redirect()->route('admin.property.show', $property)->with('status', 'Bien ajouté avec succès');
+        return redirect()->route('admin.property.index')->with('status', 'Bien ajouté avec succès');
+        // return redirect()->route('admin.property.show', $property)->with('status', 'Bien ajouté avec succès');
     }
 
     /**
@@ -49,24 +50,27 @@ class PropertyController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Property $property)
     {
-        //
+        return view('admin.properties.form', compact('property'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(PropertyFormRequest $request, Property $property)
     {
-        //
+        $property->update($request->validated());
+        return redirect()->route('admin.property.index')->with('status', 'Bien modifié avec succès');
+        // return redirect()->route('admin.property.show', $property)->with('status', 'Bien modifié avec succès');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Property $property)
     {
-        //
+        $property->delete();
+        return redirect()->route('admin.property.index')->with('status', 'Bien supprimé avec succès');
     }
 }

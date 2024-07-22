@@ -6,96 +6,112 @@
 @section('content')
     <h1>
         @yield('title')</h1>
-    <form action="{{ $property->id ? route('edit') : route('store') }}" method="post">
+    <form class="vstack gap-2"
+        action="{{ $property->id ? route('admin.property.update', $property) : route('admin.property.store') }}"
+        method="post">
         @csrf
         @method($property->id ? 'PATCH' : 'POST')
-        <div class="from-group"><label for="title"></label><input id="title" name="title" type="text"
-                class="from-control" value="{{ old('title', $property->title) }}" required>
-            @error('title')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-            @enderror
+
+        <div class="row">
+
+            @include('shared.input', [
+                'label' => __('formFields.title'),
+                'name' => 'title',
+                'class' => 'col',
+                'value' => $property->title,
+            ])
+            <div class="col row">
+                @include('shared.input', [
+                    'label' => __('formFields.surface'),
+                    'name' => 'surface',
+                    'type' => 'number',
+                    'class' => 'col',
+                    'value' => $property->surface,
+                ])
+                @include('shared.input', [
+                    'label' => __('formFields.price'),
+                    'name' => 'price',
+                    'type' => 'number',
+                    'class' => 'col',
+                    'value' => $property->price,
+                ])
+
+            </div>
         </div>
-        <div class="from-group"><label for="description"></label><input id="description" name="description" type="text"
-                class="from-control" value="{{ old('description', $property->description) }}" required>
-            @error('description')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-            @enderror
+        @include('shared.input', [
+            'label' => __('formFields.description'),
+            'name' => 'description',
+            'type' => 'textarea',
+            'class' => 'col',
+            'value' => $property->description,
+        ])
+        <div class="row">
+            @include('shared.input', [
+                'label' => __('formFields.rooms'),
+                'name' => 'rooms',
+                'type' => 'number',
+                'class' => 'col',
+                'value' => $property->rooms,
+            ])
+            @include('shared.input', [
+                'label' => __('formFields.bedrooms'),
+                'name' => 'bedrooms',
+                'type' => 'number',
+                'class' => 'col',
+                'value' => $property->bedrooms,
+            ])
+            @include('shared.input', [
+                'label' => __('formFields.floor'),
+                'name' => 'floor',
+                'type' => 'number',
+                'class' => 'col',
+                'value' => $property->floor,
+            ])
+
         </div>
-        <div class="from-group"><label for="surafce"></label><input id="surafce" name="surafce" type="text"
-                class="from-control" value="{{ old('surafce', $property->surafce) }}" required>
-            @error('surafce')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-            @enderror
+        <div class="row">
+
+            @include('shared.input', [
+                'label' => __('formFields.city'),
+                'name' => 'city',
+                'class' => 'col',
+                'value' => $property->city,
+            ])
+            @include('shared.input', [
+                'label' => __('formFields.address'),
+                'name' => 'address',
+                'class' => 'col',
+                'value' => $property->address,
+            ])
+            @include('shared.input', [
+                'label' => __('formFields.postal_code'),
+                'name' => 'postal_code',
+                'class' => 'col',
+                'value' => $property->postal_code,
+            ])
+
         </div>
-        <div class="from-group"><label for="rooms"></label><input id="rooms" name="rooms" type="text"
-                class="from-control" value="{{ old('rooms', $property->rooms) }}" required>
-            @error('rooms')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-            @enderror
+        @include('shared.check', [
+            'label' => __('formFields.sold'),
+            'type' => 'checkbox',
+            'role' => 'switch',
+            'value' => $property->sold,
+            'name' => 'sold',
+            // 'class' => '',
+        ])
+
+        <div class="form-group mt-3">
+            <button type="submit" @class(['btn', 'btn-primary' => true])>
+                @if ($property->id)
+                    {{ __('buttons.edit') }}
+                @else
+                    {{ __('buttons.create') }}
+                @endif
+            </button>
         </div>
-        <div class="from-group"><label for="bedrooms"></label><input id="bedrooms" name="bedrooms" type="text"
-                class="from-control" value="{{ old('bedrooms', $property->bedrooms) }}" required>
-            @error('bedrooms')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-            @enderror
-        </div>
-        <div class="from-group"><label for="floor"></label><input id="floor" name="floor" type="text"
-                class="from-control" value="{{ old('floor', $property->floor) }}" required>
-            @error('floor')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-            @enderror
-        </div>
-        <div class="from-group"><label for="price"></label><input id="price" name="price" type="text"
-                class="from-control" value="{{ old('price', $property->price) }}" required>
-            @error('price')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-            @enderror
-        </div>
-        <div class="from-group"><label for="city"></label><input id="city" name="city" type="text"
-                class="from-control" value="{{ old('city', $property->city) }}" required>
-            @error('city')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-            @enderror
-        </div>
-        <div class="from-group"><label for="address"></label><input id="address" name="address" type="text"
-                class="from-control" value="{{ old('address', $property->address) }}" required>
-            @error('address')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-            @enderror
-        </div>
-        <div class="from-group"><label for="postal_code"></label><input id="postal_code" name="postal_code" type="text"
-                class="from-control" value="{{ old('postal_code', $property->postal_code) }}" required>
-            @error('postal_code')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-            @enderror
-        </div>
-        <button type="submit">
-            @if ($property->id)
-                modifier
-            @else
-                creér
-            @endif
-        </button>
 
     </form>
 @endsection
+
+
+{{-- id	title	description	surface	rooms	bedrooms	floor	price	city	address	postal_code	sold	created_at	updated_at --}}

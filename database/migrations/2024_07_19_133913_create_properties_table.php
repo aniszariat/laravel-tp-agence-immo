@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->longText('description');
-            $table->integer('surafce');
+            $table->integer('surface');
             $table->integer('rooms');
             $table->integer('bedrooms');
             $table->integer('floor');
