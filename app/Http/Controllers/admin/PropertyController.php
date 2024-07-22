@@ -44,7 +44,7 @@ class PropertyController extends Controller
     // public function show(string $id)
     public function show(Property $property)
     {
-        return view('admin.property.show', compact('property'));
+        return view('admin.properties.show', compact('property'));
     }
 
     /**

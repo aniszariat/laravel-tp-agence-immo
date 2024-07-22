@@ -13,7 +13,7 @@ Route::middleware('localization')->group(
     function () {
         Route::prefix('admin/')->name('admin.')->group(
             function () {
-                Route::resource('property', PropertyController::class)->except(['show']);
+                Route::resource('property', PropertyController::class);
             }
         );
     }
