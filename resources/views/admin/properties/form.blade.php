@@ -93,11 +93,17 @@
         </div>
         @include('shared.check', [
             'label' => __('formFields.sold'),
-            'type' => 'checkbox',
             'role' => 'switch',
             'value' => $property->sold,
             'name' => 'sold',
             // 'class' => '',
+        ])
+        @include('shared.select', [
+            'label' => __('formFields.options'),
+            'value' => $property->options()->pluck('id'),
+            'name' => 'options',
+            'multiple' => true,
+            'options' => $options,
         ])
 
         <div class="form-group mt-3">

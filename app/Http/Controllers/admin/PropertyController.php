@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PropertyFormRequest;
+use App\Models\Option;
 use App\Models\Property;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,9 @@ class PropertyController extends Controller
     public function create()
     {
         $property = new Property();
-        return view('admin.properties.form', compact('property'));
+        $options = Option::all()->pluck('id');
+        dd($options);
+        return view('admin.properties.form', compact('property', 'options'));
     }
 
     /**
@@ -33,7 +36,9 @@ class PropertyController extends Controller
     public function store(PropertyFormRequest $request)
     {
         $property = new Property;
-        $property = Property::create($request->validated());
+        // $property = Property::create($request->validated());
+        $property = Property::create($this->validatePropertFields($request, $property));
+        $property->options()->sync($request->validated('options'));
         return redirect()->route('admin.property.index')->with('status', 'Bien ajouté avec succès');
         // return redirect()->route('admin.property.show', $property)->with('status', 'Bien ajouté avec succès');
     }
@@ -52,7 +57,9 @@ class PropertyController extends Controller
      */
     public function edit(Property $property)
     {
-        return view('admin.properties.form', compact('property'));
+        $options = Option::pluck('name', 'id',);
+        // return view('admin.properties.form', compact('property'));
+        return view('admin.properties.form', compact('property', 'options'));
     }
 
     /**
@@ -60,7 +67,9 @@ class PropertyController extends Controller
      */
     public function update(PropertyFormRequest $request, Property $property)
     {
-        $property->update($request->validated());
+        // $property->update($request->validated());
+        $property->update($this->validatePropertFields($request, $property));
+        $property->options()->sync($request->validated('options'));
         return redirect()->route('admin.property.index')->with('status', 'Bien modifié avec succès');
         // return redirect()->route('admin.property.show', $property)->with('status', 'Bien modifié avec succès');
     }
@@ -72,5 +81,12 @@ class PropertyController extends Controller
     {
         $property->delete();
         return redirect()->route('admin.property.index')->with('status', 'Bien supprimé avec succès');
+    }
+
+    private function validatePropertFields(PropertyFormRequest $request, Property $property)
+    {
+        $data = $request->validated();
+        unset($data['options']);
+        return $data;
     }
 }

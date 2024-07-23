@@ -17,6 +17,7 @@
                 <th>Surface</th>
                 <th>Prix</th>
                 <th>Ville</th>
+                <th>Vendu</th>
                 <th class="text-end">Action</th>
             </tr>
         </thead>
@@ -27,6 +28,7 @@
                     <td>{{ $property->surface }}</td>
                     <td>{{ number_format($property->price, thousands_separator: ' ') }}</td>
                     <td>{{ $property->city }}</td>
+                    <td>{{ $property->sold }}</td>
                     <td>
                         <div class="d-flex w-100 gap-2 justify-content-end">
                             <a href="{{ route('admin.property.show', $property) }}"
