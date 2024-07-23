@@ -1,7 +1,18 @@
 @extends('base')
 
 @section('content')
+    @php
+        $type = 'warning';
+        $slot = 'my text';
+    @endphp
     <div class="be-light p-5 mb-5 text-center">
+        {{-- <x-alert></x-alert> --}}
+        {{-- <x-alert type="danger"></x-alert> --}}
+        {{-- <x-alert :type="$type"> --}}
+        <x-alert type="{{ $type }}">
+
+            {{ $slot }}
+        </x-alert>
         <div class="container">
             <h1>
                 <a href="{{ route('property.index') }}">
