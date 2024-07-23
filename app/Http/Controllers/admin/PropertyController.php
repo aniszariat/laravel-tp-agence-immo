@@ -26,7 +26,7 @@ class PropertyController extends Controller
     {
         $property = new Property();
         $options = Option::all()->pluck('id');
-        dd($options);
+        // dd($options);
         return view('admin.properties.form', compact('property', 'options'));
     }
 
