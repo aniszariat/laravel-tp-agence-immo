@@ -13,6 +13,8 @@
 
             {{ $slot }}
         </x-alert>
+
+        <x-weather></x-weather>
         <div class="container">
             <h1>
                 <a href="{{ route('property.index') }}">

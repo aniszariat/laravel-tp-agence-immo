@@ -1,15 +1,17 @@
 @php
-    $label = isset($label) ? $label : null;
-    $type = isset($type) ? $type : 'text';
-    $name = isset($name) ? $name : '';
-    $class = isset($class) ? $class : null;
-    $value = isset($value) ? $value : null;
-    $rows = isset($rows) ? $rows : 5;
-    // $label ?? = null ;
-    // $type ??= 'text' ;
-    // $name ??= '' ;
-    // $class ??= null ;
-    // $value ??= null ;
+    // $label = isset($label) ? $label : null;
+    // $type = isset($type) ? $type : 'text';
+    // $name = isset($name) ? $name : '';
+    // $class = isset($class) ? $class : null;
+    // $value = isset($value) ? $value : null;
+    // $rows = isset($rows) ? $rows : 5;
+
+    $label ??= null;
+    $type ??= 'text';
+    $name ??= '';
+    $class ??= null;
+    $value ??= null;
+    $rows ??= 5;
 @endphp
 <div @class(['from-group', $class])>
     <label for="{{ $name }}">
