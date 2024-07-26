@@ -25,7 +25,7 @@ class PropertyController extends Controller
         }
 
         // $properties = $q->orderBy('created_at', 'desc')->paginate(25);
-        $properties = $q->paginate(25);
+        $properties = $q->paginate(5);
         $input = $request->validated();
 
         return view('properties.index', compact('properties', 'input'));

@@ -35,8 +35,8 @@
                 </div>
             @endforeach
         </div>
-        <div class="row mt-2">
+        {{-- <div class="row mt-2">
             <div class="col">{{ $properties->links() }}</div>
-        </div>
+        </div> --}}
     </div>
 @endsection

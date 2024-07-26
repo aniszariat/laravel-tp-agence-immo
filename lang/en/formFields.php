@@ -13,4 +13,8 @@ return [
     'sold' => ucfirst('sold'),
     'option name' => 'Option Name',
     'options' => 'Options',
+    'firstname' => 'Firstname',
+    'lastname' => 'Lastname',
+    'phone' => 'Phone',
+    'mail' => 'Mail',
 ];

@@ -20,7 +20,8 @@ class HomeController extends Controller
     {
         // dd($this->weather);
         // dd(app(Weather::class)->isSunny());
-        $properties = Property::orderBy('created_at', 'desc')->paginate(3);
+        // $properties = Property::orderBy('created_at', 'desc')->paginate(3);
+        $properties = Property::orderBy('created_at', 'desc')->limit(4)->get();
         // dd($properties);
         return view('home', compact('properties'));
     }

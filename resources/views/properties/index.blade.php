@@ -4,14 +4,13 @@
 @endsection
 
 @section('content')
-    <div class="d-flex justify-content-between align-items-center">
+    <div class="d-flex justify-content-center align-items-center">
         <h1>Tous les biens</h1>
-        <a href="{{ route('property.index') }}" class="btn btn-primary">retour</a>
 
     </div>
 
     <div class="gb-light p5 mb-5 text-center">
-        <form class="vstack gap-3" method="get">
+        <form class="container d-flex gap-2" method="get">
             <input type="number" placeholder="Budget max" class="form-control" name="price"
                 value="{{ $input['price'] ?? '' }}">
             <input type="number" placeholder="Surface min" class="form-control" name="surface"
@@ -38,6 +37,6 @@
         <div class="row mt-2">
             <div class="col">{{ $properties->links() }}</div>
         </div>
+        <a href="{{ route('property.index') }}" class="btn btn-primary">retour</a>
     </div>
-    {{ $properties->links() }}
 @endsection
