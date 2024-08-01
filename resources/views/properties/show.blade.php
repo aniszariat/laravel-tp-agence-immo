@@ -12,29 +12,35 @@
         <hr>
         <div class="mt-4">
             <h4>Intéressé par ce bien?</h4>
-            <form action="" method="post">
+            {{-- <form action="{{ route('property.contact', $property) }}" method="get"> --}}
+            <form action="{{ route('property.contact', $property->id) }}" method="post">
+                @csrf
                 <div class="row">
                     @include('shared.input', [
                         'class' => 'col',
                         'name' => 'firstname',
-                        'label' => __('formFileds.firstname'),
+                        'label' => __('formFields.firstname'),
+                        'value' => 'Fox',
                     ])
                     @include('shared.input', [
                         'class' => 'col',
                         'name' => 'lastname',
-                        'label' => __('formFileds.lastname'),
+                        'label' => __('formFields.lastname'),
+                        'value' => 'Ero',
                     ])
                 </div>
                 <div class="row">
                     @include('shared.input', [
                         'class' => 'col',
                         'name' => 'phone ',
-                        'label' => __('formFileds.phone'),
+                        'label' => __('formFields.phone'),
+                        'value' => '1234',
                     ])
                     @include('shared.input', [
                         'class' => 'col',
                         'name' => 'mail',
-                        'label' => __('formFileds.mail'),
+                        'label' => __('formFields.mail'),
+                        'value' => 'test@example.com',
                     ])
                 </div>
                 @include('shared.input', [
@@ -42,8 +48,10 @@
                     'class' => 'col',
                     'name' => 'message',
                     'label' => 'Message',
+                    'value' =>
+                        'Maison d\'hote pièces - Cross-site request forgeries are a type of malicious exploit whereby unauthorized commands are performed on behalf of an authenticated user. Thankfully',
                 ])
-                <button class="btn btn-primary" type="submit">Nous contacter</button>
+                <button class="btn btn-primary mt-2" type="submit">Nous contacter</button>
             </form>
         </div>
     </div>

@@ -10,6 +10,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/translate/{lang}', [LocalizationController::class, 'translate'])->name('translate');
 
+Route::post('/try', function () {
+    echo 'HELLO';
+})->name('try');
 
 Route::middleware('localization')->group(
     function () {
@@ -31,6 +34,7 @@ Route::middleware('localization')->group(
                         'slug' => $slugRegex,
                     ]
                 );
+                Route::post('/{property}/contact', 'contact')->name('contact');
             }
         );
     }

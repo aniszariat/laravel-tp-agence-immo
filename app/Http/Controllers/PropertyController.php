@@ -2,9 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PropertContactRequest;
+use App\Http\Requests\PropertyFormRequest;
 use App\Http\Requests\SearchFormRequest;
+use App\Mail\PropertyContactMail;
 use App\Models\Property;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class PropertyController extends Controller
 {
@@ -33,12 +37,21 @@ class PropertyController extends Controller
     public function show(string $slug, Property $property)
     {
         if (!$property->exists()) {
-            return redirect()->route('property.index')->whith('success', 'bien non exixstant');
+            return redirect()->route('property.index')->whith('status', 'bien non exixstant');
         }
         $propertySlug = $property->getSlug();
         if ($slug !== $propertySlug) {
             return to_route('property.show', [$propertySlug, $property]);
         }
         return view('properties.show', compact('property'));
+    }
+    public function contact(Property $property, PropertContactRequest $request)
+    // public function contact(Property $property, Request $request)
+    {
+        // dd($request);
+        // dd($request->validated());
+        Mail::send(new PropertyContactMail($property, $request->validated()));
+        // return back()->with('status', 'votre demande de contact a été envoyé avec succès');
+        return to_route('home')->with('status', 'votre demande de contact a été envoyé avec succès');
     }
 }
