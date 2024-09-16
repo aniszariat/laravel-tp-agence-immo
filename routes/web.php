@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\admin\PropertyController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LocalizationController;
 use App\Http\Controllers\OptionsController;
@@ -39,3 +40,9 @@ Route::middleware('localization')->group(
         );
     }
 );
+
+Route::controller(AuthController::class)->group(function () {
+    Route::get('/login', 'login')->name('login');
+    Route::post('/login', 'doLogin')->name('doLogin');
+    Route::delete('/logout', 'logout')->name('logout');
+});

@@ -9,7 +9,8 @@
         {{-- <x-alert></x-alert> --}}
         {{-- <x-alert type="danger"></x-alert> --}}
         {{-- <x-alert :type="$type"> --}}
-        <x-alert type="{{ $type }}">
+        {{-- <x-alert type="{{ $type }}"> --}}
+        <x-alert>
 
             {{ $slot }}
         </x-alert>
