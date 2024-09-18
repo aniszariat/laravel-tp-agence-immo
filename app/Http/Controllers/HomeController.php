@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Property;
 use App\Models\User;
 use App\Weather;
+// use Facades\App\Weather;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 
@@ -19,6 +20,7 @@ class HomeController extends Controller
     {
         // dd($this->weather);
         // dd(app(Weather::class)->isSunny());
+        // dd(Weather::isSunny());
         // $properties = Property::orderBy('created_at', 'desc')->where('sold', false)->limit(4)->get();
         // *using scope
         $properties = Property::recent()->available(false)->limit(4)->get();
@@ -26,6 +28,8 @@ class HomeController extends Controller
         // $user = User::first();
         // $user->password = '0000';
         // dd($user, $user->password);
+        // dd(app('auth'), app('cookie'), app('cache'), app('log'), app('config'));
+
         return view('home', compact('properties'));
     }
 }

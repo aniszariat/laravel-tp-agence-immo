@@ -14,9 +14,9 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         // $this->app->singleton(Weather::class, fn () => new Weather('demo'));
-        $this->app->singleton(Weather::class, function () {
-            return new Weather('demo 5');
-        });
+        //     $this->app->singleton(Weather::class, function () {
+        //         return new Weather('demo 5');
+        //     });
     }
 
     /**
