@@ -23,9 +23,9 @@ class HomeController extends Controller
         // *using scope
         $properties = Property::recent()->available(false)->limit(4)->get();
         // dd($properties->first()->created_at);
-        $user = User::first();
-        $user->password = '0000';
-        dd($user, $user->password);
+        // $user = User::first();
+        // $user->password = '0000';
+        // dd($user, $user->password);
         return view('home', compact('properties'));
     }
 }

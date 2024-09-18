@@ -14,12 +14,16 @@
 
         <div class="row">
 
-            @include('shared.input', [
+            {{-- @include('shared.input', [
                 'label' => __('formFields.title'),
                 'name' => 'title',
                 'class' => 'col',
                 'value' => $property->title,
-            ])
+            ]) --}}
+
+            {{-- <x-input :label="__('formFields.title')" :name="'title'" :class="'col'" :value="$property->title"></x-input> --}}
+            <x-input label="{{ __('formFields.title') }}" name="title" class="col"
+                value="{{ $property->title }}"></x-input>
             <div class="col row">
                 @include('shared.input', [
                     'label' => __('formFields.surface'),
