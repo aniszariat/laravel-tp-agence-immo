@@ -14,10 +14,32 @@
 </head>
 
 <body>
-    {{-- @php
+    @php
         $route = Request()->Route()->getName();
-    @endphp --}}
-    @include('_partials.header')
+    @endphp
+    {{-- @include('_partials.header') --}}
+    <div class="collapse navbar-collapse">
+        <ul class="navbar-nav">
+            <li class="nav-item"><a href="{{ route('admin.property.index') }}" @class(['nav-link', 'active' => str_contains($route, 'property')])></a>
+                Gérer les biens
+            </li>
+            <li class="nav-item"><a href="{{ route('admin.option.index') }}" @class(['nav-link', 'active' => str_contains($route, 'option')])></a>
+                Gérer les options
+            </li>
+        </ul>
+        <div class="ms-auto">
+            @auth
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <form action="{{ route('logout') }}" method="post">
+                            @method('DELETE')
+                            <button type="submit">se deconnecter</button>
+                        </form>
+                    </li>
+                </ul>
+            @endauth
+        </div>
+    </div>
     <div class="container fluid mt-5">
         @if (session('status'))
             @include('shared.alert', ['alert' => session('status')])

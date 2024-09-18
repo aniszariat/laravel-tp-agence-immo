@@ -15,7 +15,7 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        $properties = Property::orderBy('created_at', 'desc')->paginate(25);
+        $properties = Property::orderBy('created_at', 'desc')->withTrashed()->paginate(25);
         return view('admin.properties.index', compact('properties'));
     }
 

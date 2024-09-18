@@ -3,14 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginRequest;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
     public function login()
     {
-        return view('Auth.login');
+        return view('auth.login');
     }
     public function doLogin(LoginRequest $request)
     {
@@ -18,7 +17,7 @@ class AuthController extends Controller
         if (Auth::attempt($cerdentials)) {
             //* regenrate new session Id for security issues
             $request->session()->regenerate();
-            return redirect()->intended('admin.prperty.index');
+            return redirect()->intended('admin.properties.index');
         }
         return back()->withErrors([
             'email' => 'Identifiant incorrect'

@@ -17,6 +17,11 @@ Route::post('/try', function () {
 
 Route::middleware('localization')->group(
     function () {
+        /* This code snippet is defining a group of routes that are prefixed with 'admin/', require
+        authentication middleware, and have a route name prefix of 'admin.'. This means that all
+        routes defined within this group will have the 'admin.' prefix added to their names, and
+        they will also require authentication before being accessed. */
+        // Route::prefix('admin/')->middleware('auth')->name('admin.')->group(
         Route::prefix('admin/')->name('admin.')->group(
             function () {
                 Route::resource('property', PropertyController::class);
@@ -42,7 +47,7 @@ Route::middleware('localization')->group(
 );
 
 Route::controller(AuthController::class)->group(function () {
-    Route::get('/login', 'login')->name('login');
+    Route::get('/login', 'login')->middleware('auth')->name('login');
     Route::post('/login', 'doLogin')->name('doLogin');
-    Route::delete('/logout', 'logout')->name('logout');
+    Route::delete('/logout', 'logout')->middleware('guest')->name('logout');
 });

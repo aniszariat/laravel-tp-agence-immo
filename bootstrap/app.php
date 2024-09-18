@@ -13,6 +13,7 @@ return Application::configure(basePath: dirname(__DIR__))
     )
     ->withMiddleware(function (Middleware $middleware) {
         $middleware->alias(['localization' => Localization::class]);
+        // $middleware->alias(['auth' => Auth::class]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
